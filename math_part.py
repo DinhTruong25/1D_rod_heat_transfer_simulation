@@ -68,7 +68,7 @@ def run_simulation(L, alpha, f):
     global_max = np.max(u)
     ax.set_ylim(global_min - 1, global_max + 1)
     ax.set_xlabel('Position (x)')
-    ax.set_ylabel('Temperature (u)')
+    ax.set_ylabel('Temperature (u(x,t))')
     ax.set_title('Heat Distribution Over Time')
 
     # Gradient-colored line
@@ -130,7 +130,7 @@ def start_simulation():
         metal = gui_widgets['metal'].get().lower()
         alpha = metals.get(metal)
         if alpha is None:
-            raise ValueError("Invalid metal selected.")
+            raise ValueError("Please select a metal.")
 
         init_expr = gui_widgets['expr'].get()
         x_sym = symbols('x')
