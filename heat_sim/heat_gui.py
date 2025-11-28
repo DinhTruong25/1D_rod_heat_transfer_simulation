@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 from heat_core import metals, parse_initial_condition
-from heat_plot import run_plot
+from heat_plot import run_plot, run_dual_plots
 
 gui_root = None
 gui_widgets = {}
@@ -51,9 +51,12 @@ def start_dual_simulation():
 
         gui_root.withdraw()
 
-        # Run two plots in parallel, side-by-side logically (separate windows)
-        run_plot(L1, alpha1, f1, back_callback=gui_root.deiconify, title_suffix=" (Left - Comparison)")
-        run_plot(L2, alpha2, f2, back_callback=gui_root.deiconify, title_suffix=" (Right - Comparison)")
+        # Run two plots side-by-side simultaneously
+        run_dual_plots(
+            L1, alpha1, f1, metal1,
+            L2, alpha2, f2, metal2,
+            back_callback=gui_root.deiconify
+        )
 
     except ValueError as ve:
         messagebox.showerror("Input Error", str(ve))
